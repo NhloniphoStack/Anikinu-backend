@@ -1,0 +1,23 @@
+{
+  "name": "anikinu",
+  "version": "1.0.0",
+  "description": "an application for discovering and tracking anime",
+  "license": "ISC",
+  "author": "nhlonipho",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --watch server.js",
+    "ingest": "node scripts/ingestAnime.js",
+    "createTable": "node scripts/createTable.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.0",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "pg": "^8.23.0",
+    "sentence-case": "^3.0.4"
+  }
+}
