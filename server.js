@@ -50,8 +50,10 @@ const PORT = 8000
 
 const app = express()
 
+const allowedOrigins = ["https://anikinu.netlify.app/", "http://localhost:5173"]
+
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: allowedOrigins,
   credentials: true
 }))
 
@@ -61,8 +63,8 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: false,
-    sameSite: false
+    secure: true,
+    sameSite: none
   }
   
 }))
