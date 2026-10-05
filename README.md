@@ -13,6 +13,19 @@ Anikinu api was created to make discovering anime easier, with a focus on findin
 - Express
 - PostGresql
 
+## Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+Create a `.env file with the required environment vairiables, then start  the server:
+
+```bash
+npm run dev
+```
+
 # Status
 
 currently its work in progress
