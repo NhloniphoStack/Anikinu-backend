@@ -78,7 +78,14 @@ async function createTable(){
                 created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
                 UNIQUE (user_id, anime_id)
-                )`)  
+                )`) 
+                
+                
+        await db.query(`
+            ALTER TABLE users 
+            ALTER COLUMN profile_images 
+            SET DEFAULT 'https://res.cloudinary.com/wgnrg4v3/image/upload/v1791136716/animedefault.jpg'
+            `)
 
         console.log(" tables has been created!")
 

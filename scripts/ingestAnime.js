@@ -12,7 +12,7 @@ export async function ingestAnime(){
 
     const checkConnection = await checkDbConnection()
    
-    for(let page = 10;page < 100;page++){
+    for(let page = 1;page < 100;page++){
         const anime = await getAnime(page)
         console.log(`page: ${page}`)
 
