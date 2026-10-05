@@ -1,34 +1,118 @@
-# ANIKINU API
+# AniKinu API
 
-An application rest interface for storing, organising and discovering Anime built with JAVASCRIPT, NODEJS AND EXPRESS/
+> The robust backend REST API powering the AniKinu anime catalogue and discovery platform.
 
-Note: This API uses AniList to temporarily store and display anime data. We do not own any of the data, and this service is used for non-profit purposes. Feel free to check out AniList Documentation.
+AniKinu API is built with **Node.js** and **Express**, serving as the communication bridge between the PostgreSQL database and the AniKinu frontend. It handles user authentication, personal watchlist management, and serves high-performance queries for anime discovery, filtering, and curated home-page feeds.
 
-Anikinu api was created to make discovering anime easier, with a focus on finding interesting shows through search,filtering and curated  sections
+---
 
-## Built with
+## 🚀 Built With
 
-- Javascript
-- NodeJs
-- Express
-- PostGresql
+- **Runtime:** Node.js
+- **Framework:** Express.js
+- **Database:** PostgreSQL (Hosted on Neon)
+- **Data Source:** AniList GraphQL API (via automated ingestion pipeline)
 
-## Development
+---
 
-Install dependencies:
+## 🛠️ Core Features
+
+- **RESTful Endpoints:** Clean, structured endpoints for anime catalogue search, filtering, pagination, and details.
+- **Data Ingestion Pipeline:** Automated system to fetch, validate, normalize, deduplicate, and upsert anime data from the AniList GraphQL API into PostgreSQL.
+- **Authentication & Authorization:** Secure JWT/session-based user registration and login.
+- **User Watchlists:** Endpoints to track, update, and manage personal anime progress (Watching, Completed, Plan to Watch, etc.).
+- **Curated Feeds:** Optimized database queries for trending, top-rated, recently finished, and upcoming anime.
+
+---
+
+## 🗄️ Database & Data Ingestion
+
+AniKinu decouples the application from the upstream AniList API by using **PostgreSQL** as the single source of truth. 
+
+### Ingestion Pipeline
+
+AniList GraphQL API ──► Fetch ──► Validate ──► Normalize ──► Deduplicate ──► Upsert ──► PostgreSQL
+
+*Anime records use the official `anilist_id` as a unique constraint, ensuring seamless updates without duplicate entries during recurring ingestion cycles.*
+
+---
+
+## 📂 Project Structure
+
+```text
+anikinu-api/
+├── src/
+│   ├── config/        # Database and environment configurations
+│   ├── controllers/   # Route logic and handlers
+│   ├── middleware/    # Auth and error-handling middleware
+│   ├── models/        # Database queries and schemas
+│   ├── routes/        # API route definitions
+│   ├── services/      # Ingestion pipeline and external API integration
+│   └── server.js      # Application entry point
+├── .env.example
+├── package.json
+└── README.md
+
+```
+
+## Getting Started
+
+Prerequisites
+
+- Node.js (v18 recommended)
+
+- PostgreSQL database instance
+
+## Installation & Setup
+
+### Clone the repository:
 
 ```bash
+
+git clone [https://github.com/nhloniphoStack/anikinu-api.git](https://github.com/nhloniphoStack/anikinu-api.git)
+cd anikinu-api
+
+```
+
+### Install dependencies:
+
+```bash
+
 npm install
+
 ```
-Create a `.env file with the required environment vairiables, then start  the server:
+
+### Configure environment variables:
+Create a .env file in the root directory based on .env.example:
+Code snippet
+
+```javascript
+
+PORT=5000
+DATABASE_URL=postgresql://user:password@host:port/database
+JWT_SECRET=your_jwt_secret_key
+
+```
+
+### Run the development server:
 
 ```bash
-npm run dev
+
+    npm run dev
 ```
 
-# Status
+## 🚀 Deployment
 
-currently its work in progress
-## Author
+The API is production-ready and deployed on Render, connected to a cloud PostgreSQL instance hosted on Neon.
 
-Github: [@nhloniphoStack]
+## ⚠️ Disclaimer
+
+AniKinu API uses AniList data for discovery, educational, and non-profit purposes. We do not own or claim ownership of any anime data, images, or metadata provided by the AniList GraphQL API. Please check out the official AniList Documentation.
+
+## 👤 Author
+
+    GitHub: [@nhloniphoStack]
+
+## 🚧 Status
+
+AniKinu API is currently a work in progress. Contributions, feature requests, and feedback are welcome!
