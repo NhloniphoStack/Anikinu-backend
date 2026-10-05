@@ -39,7 +39,7 @@ async function startIngest(){
     console.log('Ingestion failed:', error)
   }
 
-  await delay(1000 * 60 * 60 * 3 )
+  await delay(1000 * 60 * 60 * 6 )
 
   startIngest()
 }
